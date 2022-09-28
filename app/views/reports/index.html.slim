@@ -1,0 +1,26 @@
+- if user_signed_in?
+    p
+        |  Logged in as 
+        strong
+        = current_user.email
+        | . 
+        = link_to 'Edit profile', edit_user_registration_path
+        |  | 
+        = link_to "Logout", destroy_user_session_path, method: :delete
+    h1 
+        | Reports 
+
+    h2 
+        -@reports.each do |report|
+            =link_to report.title, report
+            br
+
+    =link_to "New Report", new_report_path(@report)
+    br 
+    =link_to "Areas", areas_path
+
+- else
+    p
+        = link_to "Sign up", new_user_registration_path
+        |  | 
+        = link_to "Login", new_user_session_path

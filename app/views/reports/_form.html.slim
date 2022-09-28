@@ -1,0 +1,19 @@
+div 
+    =form_with model: @report do |form| 
+
+        =form.label "Area"
+        =form.select :area, Area.all.collect { |area| [area.name] }, include_blank: true 
+
+        br
+
+        =form.label "Title"
+        =form.text_field :title 
+
+        br
+
+        =form.label "Description"
+        =form.text_field :description
+
+        br
+
+        =form.submit

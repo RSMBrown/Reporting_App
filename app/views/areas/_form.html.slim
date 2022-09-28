@@ -1,0 +1,16 @@
+-location = ["DY234", "DY235", "AT100", "ZF212"]
+
+div 
+    =form_with model: @area do |form| 
+
+        =form.label "Name"
+        =form.text_field :name 
+
+        br
+
+        =form.label "Location"
+        =form.select :location, location.each { |location| location }, include_blank: true 
+
+        br
+
+        =form.submit

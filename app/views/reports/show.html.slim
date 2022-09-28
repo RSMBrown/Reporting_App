@@ -1,0 +1,40 @@
+- if user_signed_in?
+    p
+        |  Logged in as 
+        strong
+        = current_user.email
+        | . 
+        = link_to 'Edit profile', edit_user_registration_path
+        |  | 
+        = link_to "Logout", destroy_user_session_path, method: :delete
+    h1 
+        | Report
+
+    h2 
+            =@report.title
+            | , 
+            =@report.user.email 
+            | , 
+            =@report.area
+            | , 
+            = time_ago_in_words(@report.created_at)
+            | , 
+            =@report.description 
+
+
+    =link_to "Edit Report", edit_report_path(@report)
+
+    br 
+
+    =link_to "Delete Report", report_path(@report),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" }
+
+    br 
+
+    =link_to "Home", root_path
+- else
+    p
+        = link_to "Sign up", new_user_registration_path
+        |  | 
+        = link_to "Login", new_user_session_path

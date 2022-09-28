@@ -1,0 +1,37 @@
+- if user_signed_in?
+    p
+        |  Logged in as 
+        strong
+        = current_user.email
+        | . 
+        = link_to 'Edit profile', edit_user_registration_path
+        |  | 
+        = link_to "Logout", destroy_user_session_path, method: :delete
+    h1 
+        | Area
+
+    h2 
+            =@area.name 
+            | , 
+            =@area.location
+
+    =link_to "Edit Area", edit_area_path(@area)
+
+    br 
+
+    =link_to "Delete Area", area_path(@area),
+                        method: :delete,
+                        data: { confirm: "Are you sure?" }
+
+    br 
+
+    =link_to "Return to Areas", areas_path 
+
+    br
+
+    =link_to "Home", root_path
+- else
+    p
+        = link_to "Sign up", new_user_registration_path
+        |  | 
+        = link_to "Login", new_user_session_path
